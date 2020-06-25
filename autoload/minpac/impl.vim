@@ -268,7 +268,7 @@ function! s:job_exit_cb(id, errcode, event) dict abort
         endif
         if l:pluginfo.stat.submod == 0
           let l:pluginfo.stat.submod = 1
-          if filereadable(l:dir . '/.gitmodules')
+          if l:pluginfo.submodule != 0 && filereadable(l:dir . '/.gitmodules')
             " Update git submodule.
             let l:cmd = [g:minpac#opt.git, '-C', l:dir, 'submodule', '--quiet',
                   \ 'update', '--init', '--recursive']
